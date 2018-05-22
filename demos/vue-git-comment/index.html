@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>vue-3d-menu</title>
+	<style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #333;
+            max-width: 700px;
+            margin: 50px auto 0;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="lib/vue-git-comment.css">
+</head>
+
+<body>
+	<div id="app">
+        <vue-git-comment :options="options" />
+    </div>
+	<script src="lib/polyfill.min.js"></script>
+    <script src="lib/vue.js"></script>
+    <script src="lib/vue-git-comment.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			components: {
+				'vue-git-comment': window.VueGitComment
+			},
+            data() {
+                return {
+                    options: {
+                        client_id: '6d389de0147fcf7e6d0e',
+                        client_secret: '796a5f4d41b636a4cccd282cbc4adc42f148b39e',
+                        owner: 'shalldie',
+                        repo: 'shalldie.github.com',
+                        key: 'for_vue_git_comment'
+                    }
+                };
+            }
+		});
+	</script>
+</body>
+
+</html>
