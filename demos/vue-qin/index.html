@@ -59,14 +59,14 @@
 		</ul>
 
 	</div>
-	<script src="lib/polyfill.min.js"></script>
-	<script src="lib/vue.js"></script>
-	<script src="lib/vue-qin.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-qin@1.0.5/dist/vue-qin.min.js"></script>
 	<script>
 		new Vue({
 			el: '#app',
 			components: {
-				'vue-qin': window.VueQin.default
+				'vue-qin': window.VueQin
 			}
 		});
 	</script>
