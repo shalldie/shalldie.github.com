@@ -30,8 +30,10 @@
 	<div id="app">
         <vue-git-comment :options="options" />
     </div>
-	<script src="lib/polyfill.min.js"></script>
-    <script src="lib/vue.js"></script>
+	<!-- <script src="lib/polyfill.min.js"></script>
+    <script src="lib/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-git-comment@0.0.9/dist/vue-git-comment.min.js"></script>
 	<script>
 		new Vue({
