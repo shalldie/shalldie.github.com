@@ -32,14 +32,14 @@
 	<div id="app">
         <vue-3d-menu title="3D & 菜单" :items="items"></vue-3d-menu>
     </div>
-	<script src="lib/polyfill.min.js"></script>
-	<script src="lib/vue.js"></script>
-	<script src="lib/vue-3d-menu.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-3d-menu@1.0.5/dist/vue-3d-menu.js"></script>
 	<script>
 		new Vue({
 			el: '#app',
 			components: {
-				'vue-3d-menu': window.Vue3dMenu.default
+				'vue-3d-menu': window.Vue3dMenu
 			},
             data() {
                 var items = [
@@ -61,6 +61,13 @@
                         }
                     }
                 });
+
+                items.unshift({
+                    title:'Fork it on Github',
+                    click:function(){
+                        window.open('https://github.com/shalldie/vue-3d-menu');
+                    }
+                })
 
                 return {
                     items: items
