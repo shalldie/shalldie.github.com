@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MVVM - Todo List</title>
+    <link rel="stylesheet" href="lib/index.css">
+</head>
+<body>
+    <div id="root">
+        <h2><a href="https://github.com/shalldie/mvvm" target="_blank" style="color: #2ad;">MVVM</a> - Todo List</h2>
+        <div class="input-box">
+            <input x-model="content" type="text" placeholder="Enter plan to save.">
+            <button @click="addItem" type="button">Add</button>
+        </div>
+        <div class="list-tab">
+            <div
+                @click="changeFilter(index)"
+                x-for="(item,index) in filters"
+                :class="getTabClass(index,filterIndex)"
+            >{{item}}</div>
+            <div class="tab">
+                <button @click="reset" type="button">重置所有</button>
+            </div>
+        </div>
+        <ul class="item-list">
+            <li x-for="(item,index) in list" :class="getListItemClass(item)">
+                <div @click="toggleDone(item)" class="text">{{item.content}}</div>
+                <div @click="deleteItem(item)" class="del">Del</div>
+            </li>
+        </ul>
+    </div>
+	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+    <script src="lib/mvvm.js"></script>
+    <script>
+        new MVVM({
+            el: '#root',
+            data() {
+                return {
+                    content: '',
+                    infos: [
+                        { content: '中一次双色球，十注的 >_<#@!', done: false },
+                        { content: '然后再中一次体彩，还是十注的 0_o', done: false },
+                        { content: '我全都要 😂 🌚 🤣 💅 👅 🤠 ', done: false }
+                    ],
+                    filters: ['All', 'Todos', 'Dones'],
+                    filterIndex: 0
+                };
+            },
+            computed: {
+                // 当前tab对应的数据
+                list() {
+                    var filterIndex = this.filterIndex;
+                    var list = this.infos;
+
+                    if (filterIndex === 0) {
+                        return list;
+                    }
+                    else if (filterIndex === 1) {
+                        return list.filter(function (item) {
+                            return !item.done;
+                        });
+                    }
+                    else {
+                        return list.filter(function (item) {
+                            return item.done;
+                        });
+                    }
+                }
+            },
+            created() {
+                this.restore();
+            },
+            methods: {
+                getTabClass(index) {
+                    return index === this.filterIndex ? 'tab active' : 'tab';
+                },
+                getListItemClass(item) {
+                    return item && item.done ? 'done' : '';
+                },
+                changeFilter(index) {
+                    this.filterIndex = index;
+                },
+                addItem() {
+                    var content = this.content.trim();
+                    if (!content.length) {
+                        return;
+                    }
+                    this.infos.push({
+                        content: content,
+                        done: false
+                    });
+                    this.content = '';
+                },
+                toggleDone(item) {
+                    item.done = !item.done;
+                    this.infos = this.infos.slice();
+                },
+                deleteItem(item) {
+                    const index = this.infos.indexOf(item);
+                    this.infos.splice(index, 1);
+                },
+                reset() {
+                    Object.assign(this.$data, this.$options.data());
+                },
+                save() {
+                    var content = JSON.stringify(this.infos);
+                    localStorage['_cache_'] = content;
+                },
+                restore() {
+                    try {
+                        var content = localStorage['_cache_'];
+                        if (!content.length) {
+                            return;
+                        }
+                        var infos = JSON.parse(content);
+                        this.infos = infos;
+                    }
+                    catch (ex) {
+                        this.reset();
+                    }
+                }
+            },
+            watch: {
+                infos() {
+                    this.save();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
