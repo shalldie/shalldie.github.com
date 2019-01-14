@@ -21,6 +21,9 @@ body {
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
+#root > h2 a {
+    color: #2ad;
+}
 #root button {
     color: #fff;
     background-color: #5cb85c;
@@ -114,4 +117,59 @@ body {
 #root .item-list > li.done .text {
     text-decoration: line-through;
     color: #f00;
+}
+
+#root {
+    width: 680px;
+}
+#root .list {
+    margin: 0;
+    padding: 0;
+}
+#root .list .list-item {
+    margin-bottom: 10px;
+    list-style-type: none;
+    padding: 0 60px;
+}
+#root .list .list-item .label {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+}
+#root .list .list-item input[type='text'],
+#root .list .list-item input[type='number'] {
+    flex: 1;
+    transition: 0.3s;
+    padding: 0 6px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    height: 30px;
+    outline: none;
+    box-sizing: border-box;
+}
+#root .list .list-item input[type='text']:focus,
+#root .list .list-item input[type='number']:focus {
+    border-color: transparent;
+    box-shadow: 0 0 6px 1px #4cae4c;
+}
+#root .for-table {
+    border-collapse: collapse;
+}
+#root .for-table td {
+    border: 1px solid #2ad;
+    cursor: pointer;
+    padding: 2px;
+}
+#root .for-table td:hover {
+    background: #2ad;
+    color: #fff;
+}
+
+#root .tab-page .page-item.todo-list {
+    width: 400px;
+    margin: 20px auto 0;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-width: 0 1px;
 }

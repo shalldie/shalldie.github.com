@@ -4,89 +4,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MVVM - Todo List</title>
+    <title>MVVM - 功能演示</title>
     <link rel="stylesheet" href="lib/index.css">
 </head>
 <body>
     <div id="root">
-        <h2><a href="https://github.com/shalldie/mvvm" target="_blank" style="color: #2ad;">MVVM</a> - Todo List</h2>
-        <div class="input-box">
-            <input x-model="content" type="text" placeholder="Enter plan to save.">
-            <button @click="addItem" type="button">Add</button>
-        </div>
+        <h2>
+            <a href="https://github.com/shalldie/mvvm" target="_blank">MVVM</a>
+            <span>- 功能演示</span>
+            <button @click="reset">重置所有</button>
+        </h2>
         <div class="list-tab">
             <div
-                @click="changeFilter(index)"
-                x-for="(item,index) in filters"
-                :class="getTabClass(index,filterIndex)"
+                @click="changeTab(index)"
+                x-for="(item,index) in tabList"
+                :class="getTabClass(index,activeIndex)"
             >{{item}}</div>
-            <div class="tab">
-                <button @click="reset" type="button">重置所有</button>
+        </div>
+        <div class="tab-page">
+            <div x-if="visible.0" class="page-item">
+                <h4>双向绑定（x-model）：</h4>
+                <ul class="list">
+                    <li class="list-item">
+                        <span class="label">姓名：</span>
+                        <input x-model="person.name" type="text">
+                    </li>
+                    <li class="list-item">
+                        <span class="label">年龄：</span>
+                        <input x-model="person.age" type="number">
+                    </li>
+                    <li class="list-item">
+                        <span class="label">性别：</span>
+                        <select x-model="person.sex">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </li>
+                    <li class="list-item">
+                        <p>姓名：{{person.name}}，年龄：{{person.age}}，性别：{{person.sex}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div x-if="visible.1" class="page-item">
+                <h4>计算属性（computed）：</h4>
+                <ul class="list">
+                    <li class="list-item">
+                        <p>{{bindDescription}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div x-if="visible.2" class="page-item">
+                <h4>条件渲染（x-if）</h4>
+                <ul class="list">
+                    <li class="list-item">
+                        <label>
+                            <input x-model="showText" type="checkbox">
+                            <span>点我 &gt;_&lt;#@! 显示下文：</span>
+                        </label>
+                    </li>
+                    <li x-if="showText" class="list-item">
+                        噼里啪啦噼里啪啦噼里啪啦噼里啪啦噼里啪啦
+                    </li>
+                </ul>
+            </div>
+            <div x-if="visible.3" class="page-item">
+                <h4>循环（x-for），嵌套for循环，99乘法表（尝试点击）：</h4>
+                <table class="for-table">
+                    <tbody>
+                        <tr x-for="row in forTable">
+                            <td @click="alertText(item)" x-for="item in row">{{item}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div x-if="visible.4" class="page-item todo-list">
+                <h2>Todo List</h2>
+                <p>watch了list，任何操作都会保存在localstorage</p>
+                <div class="input-box">
+                    <input x-model="content" type="text" placeholder="Enter plan to save.">
+                    <button @click="addItem" type="button">Add</button>
+                </div>
+                <div class="list-tab">
+                    <div
+                        @click="changeFilter(index)"
+                        x-for="(item,index) in filters"
+                        :class="getTodoListTabClass(index,filterIndex)"
+                    >{{item}}</div>
+                </div>
+                <ul class="item-list">
+                    <li x-for="(item,index) in list" :class="getListItemClass(item)">
+                        <div @click="toggleDone(item)" class="text">{{item.content}}</div>
+                        <div @click="deleteItem(item)" class="del">Del</div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <ul class="item-list">
-            <li x-for="(item,index) in list" :class="getListItemClass(item)">
-                <div @click="toggleDone(item)" class="text">{{item.content}}</div>
-                <div @click="deleteItem(item)" class="del">Del</div>
-            </li>
-        </ul>
     </div>
 	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
     <script src="lib/mvvm.js"></script>
     <script>
+        // 该部分代码直接从 mvvm 项目拷贝，经 babel 转换
         new MVVM({
             el: '#root',
-            data: function () {
+            data: function data() {
                 return {
+                    activeIndex: 0,
+                    tabList: ['双向绑定', '计算属性', '条件渲染', '循环/事件', 'Todo List'],
+                    // 双绑
+                    person: {
+                        name: '花泽香菜',
+                        age: 12,
+                        sex: '女'
+                    },
+
+                    // x-if
+                    showText: false,
+
+                    // x-for
+                    forTable: [],
+
+                    // todoList
                     content: '',
-                    infos: [
-                        { content: '中一次双色球，十注的 >_<#@!', done: false },
-                        { content: '然后再中一次体彩，还是十注的 0_o', done: false },
-                        { content: '我全都要 😂 🌚 🤣 💅 👅 🤠 ', done: false }
-                    ],
+                    infos: [{ content: '中一次双色球，十注的 >_<#@!', done: false }, { content: '然后再中一次体彩，还是十注的 0_o', done: false }, { content: '我全都要 😂 🌚 🤣 💅 👅 🤠 ', done: false }],
                     filters: ['All', 'Todos', 'Dones'],
                     filterIndex: 0
                 };
             },
+
             computed: {
+                visible: function visible() {
+                    var list = {};
+                    list[this.activeIndex] = 1;
+                    return list;
+                },
+                bindDescription: function bindDescription() {
+                    return this.person.name + '\u7684\u5E74\u9F84\u662F' + this.person.age + ',\u7136\u540E\u662F\u4E2A' + this.person.sex + '\u7684';
+                },
+
                 // 当前tab对应的数据
-                list: function () {
+                list: function list() {
                     var filterIndex = this.filterIndex;
                     var list = this.infos;
 
                     if (filterIndex === 0) {
                         return list;
-                    }
-                    else if (filterIndex === 1) {
+                    } else if (filterIndex === 1) {
                         return list.filter(function (item) {
                             return !item.done;
                         });
-                    }
-                    else {
+                    } else {
                         return list.filter(function (item) {
                             return item.done;
                         });
                     }
                 }
             },
-            created: function () {
+            created: function created() {
+                this.init99();
+
+                // todolist
                 this.restore();
             },
+
             methods: {
+                // 切换tab
+                changeTab: function changeTab(index) {
+                    this.activeIndex = index;
+                },
+
                 // 获取tab的class
-                getTabClass: function (index) {
+                getTabClass: function getTabClass(index, activeIndex) {
+                    return index === activeIndex ? 'tab active' : 'tab';
+                },
+
+                // alert
+                alertText: function alertText(text) {
+                    if (!text) return;
+                    alert(text);
+                },
+
+
+                // 99 乘法表初始化
+                init99: function init99() {
+                    // 构建99乘法表
+                    var result = [];
+                    for (var y = 1; y <= 9; y++) {
+                        var list = [];
+                        for (var x = 1; x <= 9; x++) {
+                            if (x > y) list.push('');else list.push(x + ' * ' + y + ' = ' + x * y);
+                        }
+                        result.push(list);
+                    }
+                    this.forTable = result;
+                },
+
+
+                //todolist 相关
+                // 获取tab的class
+                getTodoListTabClass: function getTodoListTabClass(index) {
                     return index === this.filterIndex ? 'tab active' : 'tab';
                 },
+
                 // 获取listItem的class
-                getListItemClass: function (item) {
+                getListItemClass: function getListItemClass(item) {
                     return item && item.done ? 'done' : '';
                 },
+
                 // 改变过滤条件
-                changeFilter: function (index) {
+                changeFilter: function changeFilter(index) {
                     this.filterIndex = index;
                 },
+
                 // 新增一项
-                addItem: function () {
+                addItem: function addItem() {
                     var content = this.content.trim();
                     if (!content.length) {
                         return;
@@ -97,22 +227,27 @@
                     });
                     this.content = '';
                 },
+
                 // 切换完成状态
-                toggleDone: function (item) {
+                toggleDone: function toggleDone(item) {
                     item.done = !item.done;
                     this.infos = this.infos.slice();
                 },
+
                 // 删除一项
-                deleteItem: function (item) {
+                deleteItem: function deleteItem(item) {
                     var index = this.infos.indexOf(item);
                     this.infos.splice(index, 1);
                 },
+
                 // 重置数据
-                reset: function () {
+                reset: function reset() {
                     Object.assign(this.$data, this.$options.data());
+                    this.init99();
                 },
+
                 // 从localstorage更新数据
-                restore: function () {
+                restore: function restore() {
                     try {
                         var content = localStorage['_cache_'];
                         if (!content.length) {
@@ -120,15 +255,14 @@
                         }
                         var infos = JSON.parse(content);
                         this.infos = infos;
-                    }
-                    catch (ex) {
+                    } catch (ex) {
                         this.reset();
                     }
                 }
             },
             watch: {
                 // 监听infos改变，存入localstorage
-                infos: function () {
+                infos: function infos() {
                     var content = JSON.stringify(this.infos);
                     localStorage['_cache_'] = content;
                 }
