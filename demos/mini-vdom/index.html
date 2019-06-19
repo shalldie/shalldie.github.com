@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>mini-vdom</title>
+        <style type="text/css">
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                position: relative;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            #app {
+                width: 500px;
+                margin: 50px auto;
+                padding: 20px;
+                border: 1px solid #ddd;
+            }
+
+            .todo-list .title {
+                text-align: center;
+            }
+
+            .todo-list .input-row {
+                display: flex;
+            }
+            .todo-list .input-row input {
+                flex: 1;
+                transition: 0.3s;
+                padding: 0 6px;
+                border-radius: 3px;
+                border: 1px solid #ddd;
+                height: 32px;
+                outline: none;
+                font-size: 15px;
+            }
+            .todo-list .input-row input:focus {
+                border-color: transparent;
+                box-shadow: 0 0 6px 1px #4cae4c;
+                box-shadow: 0 0 6px 1px #2ad;
+            }
+
+            .todo-list .tab-list {
+                margin-top: 20px;
+                display: flex;
+                border-bottom: 1px dashed #ddd;
+            }
+            .todo-list .tab-list .tab-item {
+                flex: 1;
+                cursor: pointer;
+                padding: 10px;
+                text-align: center;
+            }
+            .todo-list .tab-list .tab-item.active {
+                color: #2ad;
+            }
+            .todo-list .tab-list .tab-item + .tab-item {
+                border-left: 1px dashed #ddd;
+            }
+
+            .todo-list .list-wrap {
+                margin: 0;
+                padding: 0;
+            }
+            .todo-list .list-wrap li {
+                list-style-type: none;
+                display: flex;
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px dashed #ddd;
+                cursor: pointer;
+            }
+            .todo-list .list-wrap li .content {
+                flex: 1;
+                padding-left: 20px;
+            }
+            .todo-list .list-wrap li.done .content {
+                text-decoration: line-through;
+                color: #f00;
+            }
+            .todo-list .list-wrap li .del {
+                color: #2ad;
+                border-left: 1px dashed #ddd;
+                width: 60px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="https://cdn.jsdelivr.net/npm/mini-vdom@0.0.2/dist/mini-vdom.min.js"></script>
+        <script type="text/javascript">
+            var vdom = window['MiniVDom'];
+            var todoList = [];
+            var showList = [];
+            var currentFilter = 0; // 0-全部 1-已完成 2-未完成
+
+            try {
+                todoList = JSON.parse(localStorage['todoList']);
+            } catch (_a) {
+                todoList = [{
+                    content: '买彩票',
+                    done: true
+                }, {
+                    content: '中大奖',
+                    done: false
+                }, {
+                    content: '走上人生巅峰',
+                    done: false
+                }];
+            }
+
+            function renderView() {
+                var filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : currentFilter;
+                currentFilter = filter;
+
+                if (filter === 1) {
+                    showList = todoList.filter(function (n) {
+                        return n.done;
+                    });
+                } else if (filter === 2) {
+                    showList = todoList.filter(function (n) {
+                        return !n.done;
+                    });
+                } else {
+                    showList = todoList;
+                }
+
+                render();
+                localStorage['todoList'] = JSON.stringify(todoList);
+            }
+
+            var render = function () {
+                var oldNode = document.getElementById('app');
+                var newNode = oldNode;
+                return function () {
+                    oldNode = newNode;
+                    newNode = vdom.h('div.todo-list', [vdom.h('h2.title', 'Todo List'), vdom.h('div.input-row', [vdom.h('input[type=text][placeholder=请输入要做的事情，回车添加]', {
+                        on: {
+                            keyup: function keyup(ev) {
+                                if (ev.keyCode === 13) {
+                                    var target = ev.target;
+                                    var val = target.value.trim();
+
+                                    if (val.length) {
+                                        todoList.push({
+                                            content: val,
+                                            done: false
+                                        });
+                                        renderView();
+                                        target.value = '';
+                                    }
+                                }
+                            }
+                        }
+                    })]), vdom.h('div.tab-list', [vdom.h('div.tab-item', {
+                        attrs: {
+                            class: currentFilter === 0 ? 'active' : ''
+                        },
+                        on: {
+                            click: function click() {
+                                return renderView(0);
+                            }
+                        }
+                    }, '全部'), vdom.h('div.tab-item', {
+                        attrs: {
+                            class: currentFilter === 1 ? 'active' : ''
+                        },
+                        on: {
+                            click: function click() {
+                                return renderView(1);
+                            }
+                        }
+                    }, '已完成'), vdom.h('div.tab-item', {
+                        attrs: {
+                            class: currentFilter === 2 ? 'active' : ''
+                        },
+                        on: {
+                            click: function click() {
+                                return renderView(2);
+                            }
+                        }
+                    }, '未完成')]), vdom.h('ul.list-wrap', showList.map(function (item) {
+                        return vdom.h('li', {
+                            attrs: {
+                                class: item.done ? 'done' : ''
+                            },
+                            on: {
+                                click: function click() {
+                                    item.done = !item.done;
+                                    renderView();
+                                }
+                            }
+                        }, [vdom.h('span.content', item.content), vdom.h('span.del', {
+                            on: {
+                                click: function click() {
+                                    var index = todoList.findIndex(function (n) {
+                                        return n === item;
+                                    });
+                                    todoList.splice(index, 1);
+                                    renderView();
+                                }
+                            }
+                        }, '删除')]);
+                    }))]);
+                    vdom.patch(oldNode, newNode);
+                };
+            }();
+
+            renderView();
+
+        </script>
+    </body>
+</html>
