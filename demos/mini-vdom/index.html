@@ -144,7 +144,7 @@
                 var newNode = oldNode;
                 return function () {
                     oldNode = newNode;
-                    newNode = vdom.h('div.todo-list', [vdom.h('h2.title', 'Todo List'), vdom.h('div.input-row', [vdom.h('input[type=text][placeholder=请输入要做的事情，回车添加]', {
+                    newNode = vdom.h('div#app.todo-list', [vdom.h('h2.title', 'Todo List'), vdom.h('div.input-row', [vdom.h('input[type=text][placeholder=请输入要做的事情，回车添加]', {
                         on: {
                             keyup: function keyup(ev) {
                                 if (ev.keyCode === 13) {
