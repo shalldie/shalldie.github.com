@@ -99,7 +99,7 @@
         <script src="https://cdn.jsdelivr.net/npm/mini-vdom/dist/mini-vdom.min.js"></script>
         <script type="text/javascript">
 
-            var vdom = window['MiniVDom'];
+            var vdom = window['MiniVdom'];
             var todoList = [];
             var showList = [];
             var currentFilter = 0; // 0-全部 1-已完成 2-未完成
@@ -191,6 +191,7 @@
                         }
                     }, '未完成')]), vdom.h('ul.list-wrap', showList.map(function (item) {
                         return vdom.h('li', {
+                            key: item.content,
                             attrs: {
                                 class: item.done ? 'done' : ''
                             }
