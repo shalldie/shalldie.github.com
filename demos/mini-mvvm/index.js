@@ -1,3 +1,5 @@
+var CACHE_KEY = '__mini-mvvm_cache_key__';
+
 window['vm'] = new MiniMvvm({
     el: '#root',
     data: function data() {
@@ -45,12 +47,7 @@ window['vm'] = new MiniMvvm({
     },
 
     computed: {
-        visible: function visible() {
-            var list = {};
-            list[this.activeIndex] = 1;
-            return list;
-        },
-        bindDescription: function bindDescription() {
+        computedDescription: function () {
             return (
                 this.person.name +
                 '\u7684\u5E74\u9F84\u662F' +
@@ -62,18 +59,19 @@ window['vm'] = new MiniMvvm({
         },
 
         // 当前tab对应的数据
-        list: function list() {
+        list: function () {
             var filterIndex = this.filterIndex;
-            var list = this.infos;
 
             if (filterIndex === 0) {
-                return list;
-            } else if (filterIndex === 1) {
-                return list.filter(function (item) {
+                return this.infos;
+            }
+            else if (filterIndex === 1) {
+                return this.infos.filter(function (item) {
                     return !item.done;
                 });
-            } else {
-                return list.filter(function (item) {
+            }
+            else {
+                return this.infos.filter(function (item) {
                     return item.done;
                 });
             }
@@ -87,24 +85,8 @@ window['vm'] = new MiniMvvm({
     },
 
     methods: {
-        // 切换tab
-        changeTab: function changeTab(index) {
-            this.activeIndex = index;
-        },
-
-        // 获取tab的class
-        getTabClass: function getTabClass(index, activeIndex) {
-            return index === activeIndex ? 'tab active' : 'tab';
-        },
-
-        // alert
-        alertText: function alertText(text) {
-            if (!text) return;
-            alert(text);
-        },
-
         // 99 乘法表初始化
-        init99: function init99() {
+        init99: function () {
             // 构建99乘法表
             var result = [];
             for (var y = 1; y <= 9; y++) {
@@ -119,25 +101,9 @@ window['vm'] = new MiniMvvm({
         },
 
         //todolist 相关
-        // 获取tab的class
-        getTodoListTabClass: function getTodoListTabClass(index) {
-            return index === this.filterIndex
-                ? 'tab active'
-                : 'tab';
-        },
-
-        // 获取listItem的class
-        getListItemClass: function getListItemClass(item) {
-            return item && item.done ? 'done' : '';
-        },
-
-        // 改变过滤条件
-        changeFilter: function changeFilter(index) {
-            this.filterIndex = index;
-        },
 
         // 新增一项
-        addItem: function addItem() {
+        addItem: function () {
             var content = this.content.trim();
             if (!content.length) {
                 return;
@@ -150,7 +116,7 @@ window['vm'] = new MiniMvvm({
         },
 
         // 切换完成状态
-        toggleDone: function toggleDone(item) {
+        toggleDone: function (item) {
             item.done = !item.done;
             this.infos = this.infos.slice();
         },
@@ -162,15 +128,15 @@ window['vm'] = new MiniMvvm({
         },
 
         // 重置数据
-        reset: function reset() {
-            Object.assign(this.$data, this.$options.data());
+        reset: function () {
+            Object.assign(this._data, this.$options.data());
             this.init99();
         },
 
         // 从localstorage更新数据
-        restore: function restore() {
+        restore: function () {
             try {
-                var content = localStorage['_cache_'];
+                var content = localStorage[CACHE_KEY];
                 if (!content.length) {
                     return;
                 }
@@ -185,7 +151,7 @@ window['vm'] = new MiniMvvm({
         // 监听infos改变，存入localstorage
         infos: function infos() {
             var content = JSON.stringify(this.infos);
-            localStorage['_cache_'] = content;
+            localStorage[CACHE_KEY] = content;
         }
     }
 });
