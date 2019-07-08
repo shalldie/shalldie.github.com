@@ -6,6 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>mini-mvvm - 功能演示</title>
         <link rel="stylesheet" href="index.css" />
+        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@7.4.4/dist/polyfill.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mini-mvvm@0.0.3/dist/mini-mvvm.min.js"></script>
     </head>
     <body>
         <div id="root">
@@ -22,7 +24,7 @@
                 >{{ item }}</div>
             </div>
             <div class="tab-page">
-                <div m-if="(activeIndex === 0)" class="page-item">
+                <div m-if="activeIndex === 0" class="page-item">
                     <h4>双向绑定（m-model）：</h4>
                     <ul class="list">
                         <li class="list-item">
@@ -45,7 +47,7 @@
                         </li>
                     </ul>
                 </div>
-                <div m-if="(activeIndex===1)" class="page-item">
+                <div m-if="activeIndex===1" class="page-item">
                     <h4>计算属性（computed）：</h4>
                     <ul class="list">
                         <li class="list-item">
@@ -53,7 +55,7 @@
                         </li>
                     </ul>
                 </div>
-                <div m-if="(activeIndex===2)" class="page-item">
+                <div m-if="activeIndex===2" class="page-item">
                     <h4>条件渲染（m-if）</h4>
                     <ul class="list">
                         <li class="list-item">
@@ -67,7 +69,7 @@
                         </li>
                     </ul>
                 </div>
-                <div m-if="(activeIndex===3)" class="page-item">
+                <div m-if="activeIndex===3" class="page-item">
                     <h4>循环（m-for），嵌套for循环，99乘法表（尝试点击）：</h4>
                     <table class="for-table">
                         <tbody>
@@ -82,7 +84,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div m-if="(activeIndex===4)" class="page-item todo-list">
+                <div m-if="activeIndex===4" class="page-item todo-list">
                     <h2>Todo List</h2>
                     <p>watch了list，任何操作都会保存在localstorage</p>
                     <div class="input-box">
@@ -116,8 +118,6 @@
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/@babel/polyfill@7.4.4/dist/polyfill.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mini-mvvm@0.0.2/dist/mini-mvvm.min.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
