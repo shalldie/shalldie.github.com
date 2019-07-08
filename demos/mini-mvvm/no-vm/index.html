@@ -9,8 +9,12 @@
 </head>
 <body>
     <div id="root">
+        <p>
+            这个是没有 virtual dom 的版本,
+            <a target="_blank" href="https://github.com/shalldie/mini-mvvm/tree/no-vdom">https://github.com/shalldie/mini-mvvm/tree/no-vdom</a>
+        </p>
         <h2>
-            <a href="https://github.com/shalldie/mvvm" target="_blank">MVVM</a>
+            <a href="https://github.com/shalldie/mini-mvvm/tree/no-vdom" target="_blank">MVVM - no virtual dom</a>
             <span>- 功能演示</span>
             <button @click="reset">重置所有</button>
         </h2>
@@ -101,7 +105,7 @@
         </div>
     </div>
 	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/shalldie/mvvm/dist/mvvm.js"></script>
+    <script src="lib/mvvm.js"></script>
     <script>
         // 该部分代码直接从 mvvm 项目拷贝，经 babel 转换
         new MVVM({
