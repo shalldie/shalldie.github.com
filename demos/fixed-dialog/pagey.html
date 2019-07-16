@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html,body{
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    *{
+        box-sizing: border-box;
+    }
+    #app{
+        position: relative;
+    }
+    .item{
+        /* margin: 8px 0; */
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        height: 40px;
+        line-height: 40px;
+    }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="item">
+        <span>1</span>
+    </div>
+    <div class="item">
+        <span>2</span>
+    </div>
+    <div class="item">
+        <span>3</span>
+    </div>
+    <div class="item">
+        <span>4</span>
+    </div>
+    <div class="item">
+        <span>5</span>
+    </div>
+    <div class="item">
+        <span>6</span>
+    </div>
+    <div class="item">
+        <span>7</span>
+    </div>
+    <div class="item">
+        <span>8</span>
+    </div>
+    <div class="item">
+        <span>9</span>
+    </div>
+    <div class="item">
+        <span>10</span>
+    </div>
+    <div class="item">
+        <span>11</span>
+    </div>
+    <div class="item">
+        <span>12</span>
+    </div>
+    <div class="item">
+        <span>13</span>
+    </div>
+    <div class="item">
+        <span>14</span>
+    </div>
+    <div class="item">
+        <span>15</span>
+    </div>
+    <script>
+    document.body.addEventListener('click',function(ex){
+        alert(ex.pageY);
+    });
+    </script>
+</div>
+</body>
+</html>
