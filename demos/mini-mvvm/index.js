@@ -1,7 +1,7 @@
 var CACHE_KEY = '__mini-mvvm_cache_key__';
 
 window['vm'] = new MiniMvvm({
-    el: '#root',
+    $el: '#root',
     data: function data() {
         return {
             activeIndex: 0,
