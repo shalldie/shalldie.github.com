@@ -30,7 +30,7 @@ window['vm'] = new MiniMvvm({
             infos: [
                 {
                     content: '中一次双色球，十注的 >_<#@!',
-                    done: false
+                    done: true
                 },
                 {
                     content: '然后再中一次体彩，还是十注的 0_o',
