@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-scroll-active</title>
+    <link rel="stylesheet" href="dist/index.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div v-for="(id, index) in idList" :key="index" :id="id" class="row">{{ id }}</div>
+        </div>
+        <div class="top-menu">
+            <v-scroll-active offset="40" :hash="true">
+                <div v-for="(id, index) in idList" :key="index" class="item" :data-scroll-active="id">{{ id }}</div>
+            </v-scroll-active>
+        </div>
+        <div class="right-menu">
+            <v-scroll-active offset="40" :hash="true" @update="handleNavbarChange">
+                <div id="tip">{{ tip }}</div>
+                <div v-for="(id, index) in idList" :key="index" class="item" :data-scroll-active="id">{{ id }}</div>
+            </v-scroll-active>
+        </div>
+    </div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-scroll-active@0.0.3/dist/v-scroll-active.js"></script>
+    <script src="dist/index.js"></script>
+</body>
+</html>
