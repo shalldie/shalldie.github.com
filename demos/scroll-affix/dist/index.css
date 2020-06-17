@@ -1,0 +1,138 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+* {
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  position: relative;
+  margin: 100px auto 200vh;
+  width: 1000px;
+}
+.container .main {
+  position: relative;
+  width: 500px;
+  background: #eee;
+}
+.container .main > div {
+  height: 500px;
+}
+.container .main .section1 {
+  background: #ddd;
+}
+.container .main .section2 {
+  background: #2ad;
+}
+.container .main .section3 {
+  background: yellow;
+}
+.container .main .section4 {
+  background: palevioletred;
+}
+.container .main .section5 {
+  background: peru;
+}
+.container .right-menu-1 {
+  flex: 1;
+}
+.container .right-menu-1 .affix-bar {
+  background: #ddd;
+}
+.container .right-menu-1 .affix-bar.scroll-affix {
+  width: 100px;
+}
+.container .right-menu-1 .affix-bar ul {
+  margin: 0;
+  padding: 20px;
+  list-style-type: none;
+}
+.container .right-menu-1 .affix-bar ul li {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.container .right-menu-2 {
+  flex: 1;
+}
+.container .right-menu-2 .affix-bar {
+  background: #2ad;
+}
+.container .right-menu-2 .affix-bar.scroll-affix {
+  width: 100px;
+}
+.container .right-menu-2 .affix-bar ul {
+  margin: 0;
+  padding: 20px;
+  list-style-type: none;
+}
+.container .right-menu-2 .affix-bar ul li {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.container .right-menu-3 {
+  flex: 1;
+}
+.container .right-menu-3 .affix-bar {
+  background: yellow;
+}
+.container .right-menu-3 .affix-bar.scroll-affix {
+  width: 100px;
+}
+.container .right-menu-3 .affix-bar ul {
+  margin: 0;
+  padding: 20px;
+  list-style-type: none;
+}
+.container .right-menu-3 .affix-bar ul li {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.container .right-menu-4 {
+  flex: 1;
+}
+.container .right-menu-4 .affix-bar {
+  background: palevioletred;
+}
+.container .right-menu-4 .affix-bar.scroll-affix {
+  width: 100px;
+}
+.container .right-menu-4 .affix-bar ul {
+  margin: 0;
+  padding: 20px;
+  list-style-type: none;
+}
+.container .right-menu-4 .affix-bar ul li {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.container .right-menu-5 {
+  flex: 1;
+}
+.container .right-menu-5 .affix-bar {
+  background: peru;
+}
+.container .right-menu-5 .affix-bar.scroll-affix {
+  width: 100px;
+}
+.container .right-menu-5 .affix-bar ul {
+  margin: 0;
+  padding: 20px;
+  list-style-type: none;
+}
+.container .right-menu-5 .affix-bar ul li {
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+}
