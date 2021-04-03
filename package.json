@@ -1,0 +1,35 @@
+{
+  "name": "shalldie.github.com",
+  "version": "1.0.0",
+  "description": "shalldie's github doc",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run docs:build",
+    "docs:dev": "vuepress dev vdocs",
+    "docs:build": "vuepress build vdocs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shalldie/shalldie.github.com.git"
+  },
+  "author": "shalldie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shalldie/shalldie.github.com/issues"
+  },
+  "homepage": "https://github.com/shalldie/shalldie.github.com#readme",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
+    "vuepress": "^1.8.2"
+  },
+  "dependencies": {
+    "mini-mvvm": "0.0.10",
+    "mini-vdom": "0.0.13",
+    "v-scroll-active": "0.0.6",
+    "v-scroll-affix": "0.0.3",
+    "vue-git-comment": "0.0.16",
+    "vue-qin": "^1.0.5"
+  }
+}
