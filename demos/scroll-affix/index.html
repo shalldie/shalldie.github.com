@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll-affix</title>
+    <link rel="stylesheet" href="dist/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="section1">section1</div>
+            <div class="section2">section2</div>
+            <div class="section3">section3</div>
+            <div class="section4">section4</div>
+            <div>
+                <pre>
+// all code is:
+var ScrollAffix = window['ScrollAffix'];
+
+for (var i = 1; i <= 5; i++) {
+    new ScrollAffix({
+        el: document.querySelector('.right-menu-' + i + ' .affix-bar'),
+        offsetTop: 20,
+        sectionSelector: i === 5 ? undefined : '.section' + i
+    });
+}
+                </pre>
+            </div>
+        </div>
+        <div class="right-menu-1">
+            <div class="affix-bar">
+                <ul>
+                    <li>list1</li>
+                    <li>list1</li>
+                    <li>list1</li>
+                    <li>list1</li>
+                    <li>list1</li>
+                    <li>list1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-menu-2">
+            <div class="affix-bar">
+                <ul>
+                    <li>list2</li>
+                    <li>list2</li>
+                    <li>list2</li>
+                    <li>list2</li>
+                    <li>list2</li>
+                    <li>list2</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-menu-3">
+            <div class="affix-bar">
+                <ul>
+                    <li>list3</li>
+                    <li>list3</li>
+                    <li>list3</li>
+                    <li>list3</li>
+                    <li>list3</li>
+                    <li>list3</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-menu-4">
+            <div class="affix-bar">
+                <ul>
+                    <li>list4</li>
+                    <li>list4</li>
+                    <li>list4</li>
+                    <li>list4</li>
+                    <li>list4</li>
+                    <li>list4</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right-menu-5">
+            <div class="affix-bar">
+                <ul>
+                    <li>no limit</li>
+                    <li>no limit</li>
+                    <li>no limit</li>
+                    <li>no limit</li>
+                    <li>no limit</li>
+                    <li>no limit</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/scroll-affix@0.0.1/dist/scroll-affix.js"></script>
+    <script src="dist/index.js"></script>
+</body>
+</html>

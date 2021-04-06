@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>vue-3d-menu</title>
+	<style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #e8d0ca url(https://i.loli.net/2018/04/07/5ac8505922be2.jpg)
+                no-repeat;
+            background-position: center top;
+        }
+        #app {
+            float: right;
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #2c3e50;
+            margin-right: 50px;
+        }
+	</style>
+</head>
+
+<body>
+	<div id="app">
+        <vue-3d-menu title="3D & 菜单" :items="items"></vue-3d-menu>
+    </div>
+	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-3d-menu@1.0.5/dist/vue-3d-menu.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			components: {
+				'vue-3d-menu': window.Vue3dMenu
+			},
+            data() {
+                var items = [
+                    '>_<#@!',
+                    '(^(OO)^) ≡',
+                    '^_^;',
+                    '→_→',
+                    '(＝^ω^＝)',
+                    '…(⊙_⊙;)… ',
+                    'O__O" ',
+                    'O_o',
+                    '（⊙o⊙）',
+                    '（*>.<*）~'
+                ].map(function(item){
+                    return {
+                        title:item,
+                        click:function(){
+                            alert(item);
+                        }
+                    }
+                });
+
+                items.unshift({
+                    title:'Fork it on Github',
+                    click:function(){
+                        window.open('https://github.com/shalldie/vue-3d-menu');
+                    }
+                })
+
+                return {
+                    items: items
+                };
+            }
+		});
+	</script>
+</body>
+
+</html>

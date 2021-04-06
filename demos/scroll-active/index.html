@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll-active</title>
+    <link rel="stylesheet" href="dist/index.css">
+</head>
+<body>
+    <div class="container">
+        <div id="row 1" class="row">row 1</div>
+        <div id="row 2" class="row">row 2</div>
+        <div id="row 3" class="row">row 3</div>
+        <div id="row4" class="row">row4</div>
+        <div id="第五行" class="row">第五行</div>
+        <div id="row 6" class="row">row 6</div>
+    </div>
+    <div class="top-menu">
+        <div class="item" data-scroll-active="row 1">row 1</div>
+        <div class="item" data-scroll-active="row 2">row 2</div>
+        <div class="item" data-scroll-active="row 3">row 3</div>
+        <div class="item" data-scroll-active="row4">row4</div>
+        <div class="item" data-scroll-active="第五行">第五行</div>
+        <div class="item" data-scroll-active="row 6">row 6</div>
+    </div>
+    <div class="right-menu">
+        <div id="tip"></div>
+        <div class="item" data-scroll-active="row 1">row 1</div>
+        <div class="item" data-scroll-active="row 2">row 2</div>
+        <div class="item" data-scroll-active="row 3">row 3</div>
+        <div class="item" data-scroll-active="row4">row4</div>
+        <div class="item" data-scroll-active="第五行">第五行</div>
+        <div class="item" data-scroll-active="row 6">row 6</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/scroll-active@0.0.7/dist/scroll-active.js"></script>
+    <script src="dist/index.js"></script>
+</body>
+</html>

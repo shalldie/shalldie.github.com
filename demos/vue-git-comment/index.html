@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>vue-git-comment</title>
+	<style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #333;
+            max-width: 760px;
+            margin: 50px auto 0;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-git-comment@0.0.16/dist/vue-git-comment.min.css">
+</head>
+
+<body>
+	<div id="app">
+        <vue-git-comment :options="options" />
+    </div>
+	<!-- <script src="lib/polyfill.min.js"></script>
+    <script src="lib/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-git-comment@0.0.16/dist/vue-git-comment.umd.min.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			components: {
+				'vue-git-comment': window.VueGitComment
+			},
+            data() {
+                return {
+                    options: {
+                        clientID: '6d389de0147fcf7e6d0e',
+                        clientSecret: '796a5f4d41b636a4cccd282cbc4adc42f148b39e',
+                        owner: 'shalldie',
+                        repo: 'shalldie.github.com',
+                        uuid: 'for_vue_git_comment',
+                        language: 'zh-CN'
+                    }
+                };
+            }
+		});
+	</script>
+</body>
+
+</html>

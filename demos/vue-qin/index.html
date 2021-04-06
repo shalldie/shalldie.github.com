@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>vue-qin</title>
+	<style>
+		#app {
+			font-family: 'Avenir', Helvetica, Arial, sans-serif;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			/* text-align: center; */
+			color: #2c3e50;
+			margin-top: 60px;
+			box-shadow: 0 0 6px #999;
+			padding: 10px;
+			width: 600px;
+			margin: 50px auto;
+		}
+
+		li {
+			margin-top: 20px;
+		}
+
+		.vue-qin {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<ul>
+			<li>
+				<vue-qin content="北凉王府龙盘虎踞于清凉山，千门万户，极土木之盛。"></vue-qin>
+			</li>
+			<li>
+				<vue-qin content="没能挣脱老道士看似云淡风轻的束缚，那踏出去的一步如何都没能落地。"></vue-qin>
+			</li>
+			<li>
+				<vue-qin content="光凭这一手，若是搁在市井中，那还不得搏得满堂喝彩啊。"></vue-qin>
+			</li>
+			<li>
+				<vue-qin content="身边出城或者进城中途歇息的酒客都嫌弃这衣着寒碜的一主一仆，刻意坐远了。"></vue-qin>
+			</li>
+			<li>
+				<vue-qin content="天下间，谁能与驰骋辗转过王朝南北十三州的北凉铁骑争锋？"></vue-qin>
+			</li>
+			<li>
+				<vue-qin content="这份娴熟，已经远远超出一般行伍悍卒百战之兵的范畴。"></vue-qin>
+			</li>
+			<li>
+				<a href="https://github.com/shalldie/vue-qin" target="_blank">
+					<vue-qin content="点我，去github看看代码，顺便star"></vue-qin>
+				</a>
+			</li>
+		</ul>
+
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-qin@1.0.5/dist/vue-qin.min.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			components: {
+				'vue-qin': window.VueQin
+			}
+		});
+	</script>
+</body>
+
+</html>
