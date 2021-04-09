@@ -1,5 +1,7 @@
 # [vue-qin](https://github.com/shalldie/vue-qin)
 
+[![npm](https://img.shields.io/npm/v/vue-qin?logo=npm&style=flat-square)](https://www.npmjs.com/package/vue-qin)
+
 Vue 的琴弦文字插件。
 
 ## Examples
