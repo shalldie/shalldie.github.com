@@ -18,7 +18,8 @@ export default {
                 owner: 'shalldie',
                 repo: 'shalldie.github.com',
                 uuid: 'for_vue_git_comment',
-                language: 'zh-CN'
+                language: 'zh-CN',
+                proxy: 'https://nosaid.com/api/corsanywhere/https://github.com/login/oauth/access_token'
             }
         };
     }
