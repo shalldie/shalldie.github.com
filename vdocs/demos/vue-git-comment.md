@@ -1,4 +1,4 @@
-# [vue-git-comment](https://github.com/shalldie/vue-git-comment)
+<!-- # [vue-git-comment](https://github.com/shalldie/vue-git-comment)
 
 [![npm][npm_image]][npm_url]
 [![gzip][gzip_image]][gzip_url]
@@ -22,4 +22,4 @@
 [actions_url]: https://github.com/shalldie/vue-git-comment/actions
 [gzip_image]: https://img.badgesize.io/https://cdn.jsdelivr.net/npm/vue-git-comment@0.0.16/dist/vue-git-comment.umd.min.js?compression=gzip&style=flat-square
 [gzip_url]: https://cdn.jsdelivr.net/npm/vue-git-comment@0.0.16/dist/vue-git-comment.umd.min.js
-[license_image]: https://img.shields.io/npm/l/vue-git-comment.svg?style=flat-square
+[license_image]: https://img.shields.io/npm/l/vue-git-comment.svg?style=flat-square -->
